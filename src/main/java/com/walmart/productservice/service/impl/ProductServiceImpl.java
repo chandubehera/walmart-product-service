@@ -30,11 +30,20 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productDTO) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found"));
-        product.setName(productDTO.getName());
+
+        /*product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setCategory(productDTO.getCategory());
         product.setPrice(productDTO.getPrice());
-        product.setStockQuantity(productDTO.getStockQuantity());
+        product.setStockQuantity(productDTO.getStockQuantity());*/
+
+        product = Product.builder()
+                .name(productDTO.getName())
+                .description(productDTO.getDescription())
+                .category(productDTO.getCategory())
+                .price(productDTO.getPrice())
+                .stockQuantity(productDTO.getStockQuantity())
+                .build();
 
         return ProductMapper.toDTO(productRepository.save(product));
     }
