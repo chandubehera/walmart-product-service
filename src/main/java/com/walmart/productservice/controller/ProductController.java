@@ -4,6 +4,9 @@ import com.walmart.productservice.dto.ProductRequestDTO;
 import com.walmart.productservice.dto.ProductResponseDTO;
 import com.walmart.productservice.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +21,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping
+    /*@PostMapping
     public ProductResponseDTO addProduct(@Valid @RequestBody ProductRequestDTO productDTO) {
         return productService.addProduct(productDTO);
+    }*/
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
+        // Call service layer to save product
+        ProductResponseDTO responseDTO = productService.addProduct(productRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
     @PutMapping("/{id}")

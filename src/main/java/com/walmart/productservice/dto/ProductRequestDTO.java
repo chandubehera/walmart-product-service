@@ -22,6 +22,8 @@ public class ProductRequestDTO {
     @Min(value = 0, message = "Stock quantity must be a positive number")
     private Integer stockQuantity;
 
+    public ProductRequestDTO() {}
+
     // ✅ Private Constructor
     private ProductRequestDTO(ProductRequestDTOBuilder builder) {
         this.name = builder.name;
