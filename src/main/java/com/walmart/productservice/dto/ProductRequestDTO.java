@@ -95,4 +95,15 @@ public class ProductRequestDTO {
     public Integer getStockQuantity() {
         return stockQuantity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductRequestDTO{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                '}';
+    }
 }
